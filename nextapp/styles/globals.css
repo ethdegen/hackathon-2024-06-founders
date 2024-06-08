@@ -1,0 +1,214 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --background: 0 0% 100%;
+        --foreground: 222.2 84% 4.9%;
+
+        --card: 0 0% 100%;
+        --card-foreground: 222.2 84% 4.9%;
+
+        --popover: 0 0% 100%;
+        --popover-foreground: 222.2 84% 4.9%;
+
+        --primary: 222.2 47.4% 11.2%;
+        --primary-foreground: 210 40% 98%;
+
+        --secondary: 210 40% 96.1%;
+        --secondary-foreground: 222.2 47.4% 11.2%;
+
+        --muted: 210 40% 96.1%;
+        --muted-foreground: 215.4 16.3% 46.9%;
+
+        --accent: 210 40% 96.1%;
+        --accent-foreground: 222.2 47.4% 11.2%;
+
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 210 40% 98%;
+
+        --border: 214.3 31.8% 91.4%;
+        --input: 214.3 31.8% 91.4%;
+        --ring: 222.2 84% 4.9%;
+
+        --radius: 0.5rem;
+    }
+
+    .dark {
+        --background: 222.2 84% 4.9%;
+        --foreground: 210 40% 98%;
+
+        --card: 222.2 84% 4.9%;
+        --card-foreground: 210 40% 98%;
+
+        --popover: 222.2 84% 4.9%;
+        --popover-foreground: 210 40% 98%;
+
+        --primary: 210 40% 98%;
+        --primary-foreground: 222.2 47.4% 11.2%;
+
+        --secondary: 217.2 32.6% 17.5%;
+        --secondary-foreground: 210 40% 98%;
+
+        --muted: 217.2 32.6% 17.5%;
+        --muted-foreground: 215 20.2% 65.1%;
+
+        --accent: 217.2 32.6% 17.5%;
+        --accent-foreground: 210 40% 98%;
+
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 210 40% 98%;
+
+        --border: 217.2 32.6% 17.5%;
+        --input: 217.2 32.6% 17.5%;
+        --ring: 212.7 26.8% 83.9%;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+}
+
+/* styles/global.css */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent scrolling */
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between; /* Ensure spacing around elements */
+  height: 100vh; /* Ensure the main container takes the full viewport height */
+  padding: 8px;
+  box-sizing: border-box; /* Include padding in element's total width and height */
+}
+
+.form-container {
+  margin-bottom: 8px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center; /* Center the cards horizontally */
+  width: 100%; /* Ensure the container takes full width */
+  max-height: 60%; /* Adjust max height to ensure space for other elements */
+  flex-grow: 1; /* Allow the card container to grow */
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: calc(20vw - 16px); /* Adjust the width to be responsive */
+  height: calc(28vw - 16px); /* Maintain the aspect ratio 2.5:3.5 */
+  max-height: 200px; /* Limit max height for better fit */
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background-color: white;
+}
+
+.card.prompt {
+  background-color: black;
+  color: white;
+}
+
+.card.joke {
+  background-color: white;
+  color: black;
+  border-color: #ddd;
+}
+
+.card.border-2 {
+  border-width: 2px;
+}
+
+.card.border-blue-500 {
+  border-color: #4299e1;
+}
+
+.card.bg-blue-100 {
+  background-color: #ebf8ff;
+}
+
+input[type="text"] {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+  color: #333;
+}
+
+button.submit-button {
+  margin-top: 16px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #28a745; /* Default green background */
+  color: white;
+  cursor: pointer;
+  align-self: center; /* Ensure the button is centered */
+  transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+button.submit-button:hover {
+  background-color: #218838; /* Darker green on hover */
+}
+
+button.submit-button:disabled {
+  background-color: #6c757d; /* Grey when disabled */
+  cursor: not-allowed;
+}
+
+button.submit-button.loading {
+  background-color: #6c757d; /* Grey when loading */
+  cursor: not-allowed;
+}
+
+img {
+  width: 40vh; /* Use vh units to scale the image */
+  height: auto;
+  border-radius: 8px;
+}
+
+.image-container {
+  position: absolute;
+  top: 7vh; /* Move the container further from the top */
+  right: 7vh; /* Move the container further from the right */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.merged-prompt {
+  margin-top: 8px;
+  font-size: 1.5vh; /* Use vh units for responsive font size */
+  color: #333;
+  text-align: center;
+  max-width: 60vh; /* Ensure the text container has the same width as the image */
+  word-wrap: break-word; /* Allow text to wrap onto new lines if needed */
+}
+

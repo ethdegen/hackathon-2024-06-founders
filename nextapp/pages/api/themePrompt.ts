@@ -1,7 +1,23 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { openaiClientPromise } from "../../src/utils/openaiClient";
+//import { openaiClientPromise } from "../../src/utils/openaiClient";
 
-openaiClientPromise.then((openai) => console.log("OpenAI client imported:"));
+import { groqClientPromise } from "../../src/utils/groqClient";
+
+// Initialize Groq Client
+let groq: any;
+async function init(): Promise<GroqInstance> {
+  try {
+    console.log("Initializing Groq client...");
+    groq = await groqClientPromise;
+    console.log("Groq client initialized successfully.");
+    return groq;
+  } catch (error) {
+    console.error("Error initializing OpenAI client:", error);
+    throw error; 
+  }
+}
+
+/*openaiClientPromise.then((openai) => console.log("OpenAI client imported:"));
 let openai;
 async function init() {
     try {
@@ -11,7 +27,7 @@ async function init() {
     } catch (error) {
         console.error("Error initializing OpenAI client:", error);
     }
-}
+}*/
 
 await init();
 
@@ -26,13 +42,13 @@ function extractQuestions(content: string): string[] {
 }
 
 async function generateFIBCard(description: string): Promise<string[]> {
-    if (!openai) {
-        throw new Error("OpenAI client is not initialized.");
+    if (!groq) {
+        throw new Error("Groq client is not initialized.");
     }
 
     try {
-        const questions = await openai.chat.completions.create({
-            model: "gpt-4",
+        const questions = await groq.chat.completions.create({
+            model: "llama3-70b-8192",
             messages: [
                 {
                     role: "user",
